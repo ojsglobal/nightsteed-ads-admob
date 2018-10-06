@@ -1,0 +1,26 @@
+{
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "nightsteed-ads-admob",
+    "platforms": [
+      "android"
+    ]
+  },
+  "deprecated": false,
+  "description": "NightSteed Ads API",
+  "keywords": [
+    "cordova",
+    "ads",
+    "banner",
+    "interstitial",
+    "monetization",
+    "ad",
+    "mopub",
+    "cocoon",
+    "plugins",
+    "ecosystem:cordova"
+  ],
+  "license": "@2018, NightSteed All Rights reserved",
+  "name": "nightsteed-ads-admob",
+  "version": "1.0.0"
+}
