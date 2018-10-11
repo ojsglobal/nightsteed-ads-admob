@@ -308,8 +308,8 @@ static inline NSString * GET_ID(CDVInvokedUrlCommand * command)
     
     NSMutableDictionary * dic = [NSMutableDictionary dictionary];
     [dic setObject:reward && reward.amount ? reward.amount : [NSNumber numberWithInteger:0] forKey:@"amount"];
-    [dic setObject:reward && reward.currencyType ? reward.currencyType : @"" forKey:@"currencyType"];
-    [dic setObject:reward && reward.itmKey ? reward.itmKey : @"" forKey:@"itmKey"];
+    [dic setObject:reward && reward.currencyType ? reward.currencyType : @"" forKey:@"currency"];
+    [dic setObject:reward && reward.itmKey ? reward.itmKey : @"" forKey:@"itemKey"];
     
     if (error) {
         [self callListener:@[@"reward", [self findInterstitialId:interstitial], dic, [self errorToDic:error]] callbackId:_interstitialListenerId];
@@ -348,8 +348,8 @@ static inline NSString * GET_ID(CDVInvokedUrlCommand * command)
     
     NSMutableDictionary * dic = [NSMutableDictionary dictionary];
     [dic setObject:reward && reward.amount ? reward.amount : [NSNumber numberWithInteger:0] forKey:@"amount"];
-    [dic setObject:reward && reward.currencyType ? reward.currencyType : @"" forKey:@"currencyType"];
-    [dic setObject:reward && reward.itmKey ? reward.itmKey : @"" forKey:@"itmKey"];
+    [dic setObject:reward && reward.currencyType ? reward.currencyType : @"" forKey:@"currency"];
+    [dic setObject:reward && reward.itmKey ? reward.itmKey : @"" forKey:@"itemKey"];
     
     if (error) {
         [self callListener:@[@"reward", [self findRewardedVideoId:rewardedVideo], dic, [self errorToDic:error]] callbackId:_rewardedVideoListenerId];

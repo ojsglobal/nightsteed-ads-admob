@@ -1,11 +1,11 @@
-#NightSteed Admob Plugin
+# NightSteed Admob Plugin
 
-##Install
+## Install
 ```
 cordova plugin add https://github.com/NightSteedSC/nightsteed-ads-admob.git
 ```
 
-##Configuring AdMob
+## Configuring AdMob
 ```
 NightSteed.Ad.AdMob.configure({
     android: {
