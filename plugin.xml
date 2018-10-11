@@ -4,7 +4,10 @@
     <name>NightsteedAdsCommon</name>
     <description>Nightsteed Ads API</description>
     <license>@2018, NightSteed All Rights reserved</license>
-    <keywords>cordova,ads,banner,interstitial,monetization,ad,mopub,cocoon,plugins</keywords>
+    <keywords>cordova,ads,banner,interstitial,monetization,ad,nightsteed,plugins</keywords>
+    <js-module src="www/nightsteed_utils.js" name="NightSteedUtils">
+        <runs/>
+    </js-module>
     <js-module src="www/nightsteed_ads.js" name="Ads">
         <runs/>
     </js-module>
@@ -93,9 +96,6 @@
 
     </platform>
 
-
-
-    <dependency id="cocoon-plugin-common" />
     <dependency id="cordova-plugin-cocoapod-support" />
-    
+   
 </plugin>
