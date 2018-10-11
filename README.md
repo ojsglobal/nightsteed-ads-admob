@@ -178,3 +178,13 @@ First thing you have to do after creating a rewarded video is to listen to its l
 ```
 rewardedVideo.show()
 ```
+
+## User Consent
+Because of EU General Data Protection Regulation, personalized content can be provided only by explicit consent of the user.
+It is the developer's responsibility to ask the consent eligible for the GDPR requirements.
+Consent for personalized ads can be set:
+```
+NightSteed.Ad.setConsent(false);
+```
+
+- true - user consent granted.
