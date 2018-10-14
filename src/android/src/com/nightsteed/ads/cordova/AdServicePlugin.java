@@ -418,6 +418,11 @@ public class AdServicePlugin extends CordovaPlugin implements
                 Log.d(TAG, "This is reward");
                 Object rewardObj = getRewardJson((AdRewardedVideo.Reward)obj);
                 array.put(rewardObj);
+            } else if (obj instanceof AdRewardedVideo.Error) {
+                Log.d(TAG, "This is reward error");
+                AdRewardedVideo.Error rewardError = (AdRewardedVideo.Error)obj;
+                array.put(rewardError.code);
+                array.put(rewardError.message);
             } else {
                 array.put(obj);
             }
