@@ -31,6 +31,8 @@ public class AdServiceAdMob implements AdService {
             throw new RuntimeException("Empty App AdUnit");
         }
 
+        Log.d(TAG, "Initializing with appId: " + appId);
+
         if (!_initialized) {
             MobileAds.initialize(activity, appId);
             _initialized = true;
