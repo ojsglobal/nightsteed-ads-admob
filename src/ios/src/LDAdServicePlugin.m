@@ -1,4 +1,5 @@
 #import "LDAdServicePlugin.h"
+#import "UnityAds/UADSMetaData.h"
 #import "NativeStorage.h"
 
 
@@ -65,12 +66,14 @@ static inline NSString * GET_ID(CDVInvokedUrlCommand * command)
 
 -(void) setConsent:(CDVInvokedUrlCommand*) command
 {
-    BOOL consentOK = [[command argumentAtIndex:0 withDefault:@"NO"] boolValue];
+    BOOL consentOK = [[command argumentAtIndex:0 withDefault:@NO] boolValue];
     NSLog(consentOK ? @"setConsent: consent Yes" : @"setConsent: consent No");
     [storage putBoolean:@"personalizedAdsConsent" value:consentOK];
     _service.settings.personalizedAdsConsent = consentOK;
 
-    UADSMetaData *gdprConsentMetaData = [[UADSMetaData alloc] init]; [gdprConsentMetaData set:@"gdpr.consent" value:consentOK]; [gdprConsentMetaData commit];
+    UADSMetaData *gdprConsentMetaData = [[UADSMetaData alloc] init];
+    [gdprConsentMetaData set:@"gdpr.consent" value:(consentOK ? @YES : @NO)];
+    [gdprConsentMetaData commit];
 
     [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK] callbackId:command.callbackId];
 }
