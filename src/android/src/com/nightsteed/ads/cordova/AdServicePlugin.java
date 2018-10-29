@@ -203,7 +203,7 @@ public class AdServicePlugin extends CordovaPlugin implements
     }
 
     public void createRewardedVideo(CordovaArgs args, CallbackContext ctx) {
-        Log.d(TAG, "createRewardedVideo...");
+        Log.d(TAG, "createRewardedVideo..." + args.toString());
         String rewardedVideoId = getId(args);
         String adUnit = args.isNull(1) ? null : args.optString(1);
         Log.d(TAG, "createRewardedVideo...adUnit: " + adUnit);

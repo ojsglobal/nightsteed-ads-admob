@@ -12,6 +12,12 @@
         <runs/>
     </js-module>
 
+    <!-- Hooks -->
+    <hook src="scripts/hooks/beforePrepare.js" type="after_plugin_install" />
+    <hook src="scripts/hooks/afterPrepare.js" type="after_plugin_add" />
+    <hook src="scripts/hooks/beforePrepare.js" type="before_prepare" />
+    <hook src="scripts/hooks/afterPrepare.js" type="after_prepare" />
+
     <platform name="android">
         <source-file src="src/android/src/com/nightsteed/ads/AdService.java" target-dir="src/com/nightsteed/ads"/>
         <source-file src="src/android/src/com/nightsteed/ads/AdBanner.java" target-dir="src/com/nightsteed/ads"/>
@@ -47,6 +53,8 @@
             <activity android:name="com.google.android.gms.ads.AdActivity"
                       android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
         </config-file>
+
+      
 
         <framework src="com.google.android.gms:play-services-ads:15.0.1"/>
         <framework src="com.android.support:multidex:1.0.3" />
