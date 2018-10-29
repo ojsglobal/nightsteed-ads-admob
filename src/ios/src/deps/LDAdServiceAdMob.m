@@ -38,7 +38,7 @@ static inline bool isIpad() {
     return self;
 }
 
-    - (void)dealloc {
+- (void)dealloc {
     _adView.delegate = nil;
     if (_adView.superview) {
         [_adView removeFromSuperview];
