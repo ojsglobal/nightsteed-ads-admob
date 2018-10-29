@@ -101,13 +101,16 @@ public class AdRewardedAdMob extends AbstractAdRewardedVideo {
                 Log.d(TAG, "loadAd...still loading...!adsConsent");
                 Bundle extras = new Bundle();
                 extras.putString("npa", "1");
-                adRequest = new AdRequest.Builder().addNetworkExtrasBundle(AdMobAdapter.class, extras).build();
+                adRequest = new AdRequest.Builder()
+                    .addNetworkExtrasBundle(AdMobAdapter.class, extras)
+                    .build();
             } else {
                 Log.d(TAG, "loadAd...still loading...   adsConsent...");
-                adRequest = new AdRequest.Builder().build();
+                adRequest = new AdRequest.Builder()
+                    .build();
             }
 
-            Log.d(TAG, "loadAd, request...");
+            Log.d(TAG, "loadAd, request...adUnit: " + adUnit);
             _rewardedVideo.loadAd(adUnit, adRequest);
             Log.d(TAG, "loadAd, request...END...");
         } else {
