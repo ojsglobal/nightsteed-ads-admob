@@ -2,6 +2,8 @@
 #import "UnityAds/UADSMetaData.h"
 #import "NativeStorage.h"
 
+@import GoogleMobileAds;
+
 
 @implementation LDAdBannerData
 -(instancetype) initWithBanner:(LDAdBanner *) banner
@@ -29,6 +31,7 @@ static inline NSString * GET_ID(CDVInvokedUrlCommand * command)
     NSString * _bannerListenerId;
     NSString * _interstitialListenerId;
     NSString * _rewardedVideoListenerId;
+    NSString * _appId;
     NativeStorage* storage;
 }
 
@@ -61,6 +64,26 @@ static inline NSString * GET_ID(CDVInvokedUrlCommand * command)
     _service.settings.interstitialIpad = [data objectForKey:@"interstitialIpad"] ?: _service.settings.interstitialIpad;
     _service.settings.rewardedVideo = [data objectForKey:@"rewardedVideo"] ?: _service.settings.rewardedVideo;
     _service.settings.rewardedVideoIpad = [data objectForKey:@"rewardedVideoIpad"] ?: _service.settings.rewardedVideoIpad;
+    
+    
+    _appId = [data objectForKey:@"appId"];
+    NSLog(_appId);
+    
+    if (_appId == NULL) {
+        NSLog(@"Null appId");
+    } else {
+        NSLog(@"The passed appId: %@", _appId);
+    }
+
+    
+
+    
+    [GADMobileAds configureWithApplicationID:_appId];
+//     [GADMobileAds configureWithApplicationID:@"ca-app-pub-5839242606014541~7317319957"];
+    
+    GADRequest *request = [GADRequest request];
+    request.testDevices = @[ @"26feeb2948194259a57b970e3643219d" ]; // Sample device ID
+
     [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK] callbackId:command.callbackId];
 }
 
