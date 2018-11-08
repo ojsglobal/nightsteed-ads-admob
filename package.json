@@ -30,7 +30,7 @@
   },
   "url": "https://github.com/NightSteedSC/nightsteed-ads-admob.git",
   "version": "1.0.0",
-  "dependencies": {
+  "devDependencies": {
     "xml2js": "^0.4.19"
   }
 }
