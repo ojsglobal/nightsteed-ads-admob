@@ -10,10 +10,10 @@
 
   // builds after platform config
   function run(context) {
+    console.log("afterPrepare...");
     const preferences = configPreferences.read(context);
     const platforms = context.opts.cordova.platforms;
-    console.log("afterPrepare");
-
+  
     platforms.forEach(platform => {
       if (platform === ANDROID) {
         androidManifest.writePreferences(context, preferences);
