@@ -19,10 +19,22 @@ module.exports = function (context) {
             function (error, stdout, stderr) {
                 if (error !== null) {
                     // XXX TODO SIGNAL FAILURE HERE.
-                    console.log('npm install of external dependencies failed: ' + error);
+                    console.log('npm install of external dependencies (xml2js) failed: ' + error);
                     deferral.resolve();
                 } else {
-                    console.log('npm install of external dependencies ok');
+                    console.log('npm install of external dependencies (xml2js) ok');
+                    deferral.resolve();
+                }
+            }
+    );
+    exec(   'npm install lodash',
+            function (error, stdout, stderr) {
+                if (error !== null) {
+                    // XXX TODO SIGNAL FAILURE HERE.
+                    console.log('npm install of external dependencies (lodash) failed: ' + error);
+                    deferral.resolve();
+                } else {
+                    console.log('npm install of external dependencies (lodash) ok');
                     deferral.resolve();
                 }
             }
