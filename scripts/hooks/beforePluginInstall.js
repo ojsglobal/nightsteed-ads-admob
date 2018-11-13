@@ -39,6 +39,18 @@ module.exports = function (context) {
                 }
             }
     );
+    exec(   'npm install shelljs',
+            function (error, stdout, stderr) {
+                if (error !== null) {
+                    // XXX TODO SIGNAL FAILURE HERE.
+                    console.log('npm install of external dependencies (shelljs failed: ' + error);
+                    deferral.resolve();
+                } else {
+                    console.log('npm install of external dependencies (shelljs) ok');
+                    deferral.resolve();
+                }
+            }
+    );
 
     return deferral.promise;
 };
