@@ -15,38 +15,14 @@ module.exports = function (context) {
 
     console.log('installing external dependencies via npm');
 
-    exec(   'npm install xml2js',
+    exec(   'npm install xml2js lodash shelljs',
             function (error, stdout, stderr) {
                 if (error !== null) {
                     // XXX TODO SIGNAL FAILURE HERE.
-                    console.log('npm install of external dependencies (xml2js) failed: ' + error);
+                    console.log('npm install of external dependencies (xml2js lodash shelljs) failed: ' + error);
                     deferral.resolve();
                 } else {
-                    console.log('npm install of external dependencies (xml2js) ok');
-                    deferral.resolve();
-                }
-            }
-    );
-    exec(   'npm install lodash',
-            function (error, stdout, stderr) {
-                if (error !== null) {
-                    // XXX TODO SIGNAL FAILURE HERE.
-                    console.log('npm install of external dependencies (lodash) failed: ' + error);
-                    deferral.resolve();
-                } else {
-                    console.log('npm install of external dependencies (lodash) ok');
-                    deferral.resolve();
-                }
-            }
-    );
-    exec(   'npm install shelljs',
-            function (error, stdout, stderr) {
-                if (error !== null) {
-                    // XXX TODO SIGNAL FAILURE HERE.
-                    console.log('npm install of external dependencies (shelljs failed: ' + error);
-                    deferral.resolve();
-                } else {
-                    console.log('npm install of external dependencies (shelljs) ok');
+                    console.log('npm install of external dependencies (xml2js lodash shelljs) ok');
                     deferral.resolve();
                 }
             }
