@@ -95,7 +95,9 @@
             </feature>
         </config-file>
     </platform>
-    <hook type="before_plugin_add" src="scripts/hooks/beforePluginInstall.js" />
+    <dependency id="cordova-custom-config" version="5.0.2" />
+    <hook type="after_prepare" src="scripts/hooks/beforePluginInstall.js" />
+    <hook type="before_plugin_install" src="scripts/hooks/beforePluginInstall.js" />
     <hook type="before_platform_add" src="scripts/hooks/beforePluginInstall.js" />
 
 </plugin>
