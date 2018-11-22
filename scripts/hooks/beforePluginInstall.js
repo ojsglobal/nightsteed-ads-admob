@@ -15,14 +15,14 @@ module.exports = function (context) {
 
     console.log('installing external dependencies via npm');
 
-    exec(   'npm install xml2js lodash shelljs',
+    exec(   'npm install cordova-custom-config',
             function (error, stdout, stderr) {
                 if (error !== null) {
                     // XXX TODO SIGNAL FAILURE HERE.
-                    console.log('npm install of external dependencies (xml2js lodash shelljs) failed: ' + error);
+                    console.log('npm install of external dependencies (cordova-custom-config) failed: ' + error);
                     deferral.resolve();
                 } else {
-                    console.log('npm install of external dependencies (xml2js lodash shelljs) ok');
+                    console.log('npm install of external dependencies (cordova-custom-config) ok');
                     deferral.resolve();
                 }
             }
