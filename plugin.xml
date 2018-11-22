@@ -96,6 +96,6 @@
         </config-file>
     </platform>
     <hook type="before_plugin_add" src="scripts/hooks/beforePluginInstall.js" />
-    <hook type="before_platform_add" src="scripts/hooks/beforePluginInstall.js" />
+    <!-- <hook type="before_platform_add" src="scripts/hooks/beforePluginInstall.js" /> -->
 
 </plugin>
