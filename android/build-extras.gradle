@@ -4,4 +4,9 @@ android {
 	    multiDexEnabled true
 	}
 
+	dependencies {
+	    compile 'com.unity3d.ads:unity-ads:2+'
+	    compile 'com.google.ads.mediation:unity:2+'
+	}
+
 }
