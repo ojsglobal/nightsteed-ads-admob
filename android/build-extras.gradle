@@ -3,4 +3,9 @@ android {
 defaultConfig {
     multiDexEnabled true
 }
+dependencies {
+	    compile 'com.android.support:appcompat-v7:24+'
+	    compile 'com.google.android.gms:play-ads-services:11+'
+	    compile 'com.android.support:multidex:1.0.1'
+	}
 }
