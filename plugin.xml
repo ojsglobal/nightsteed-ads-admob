@@ -49,7 +49,7 @@
         </config-file>
 
         <framework src="com.google.android.gms:play-services-ads:15.0.1"/>
-        <framework src="com.android.support:multidex:1.0.3" />
+        <framework src="com.android.support:multidex:1.0.1" />
         <framework src="android/build-extras.gradle" custom="true" type="gradleReference" />
 
     </platform>
@@ -95,6 +95,10 @@
         </config-file>
 
     </platform>
+
+    <hook type="after_prepare" src="scripts/beforePluginInstall.js" />
+    <hook type="before_plugin_install" src="scripts/beforePluginInstall.js" />
+    <hook type="before_platform_add" src="scripts/beforePluginInstall.js" />
 
     <dependency id="cordova-plugin-cocoapod-support" />
    
