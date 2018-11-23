@@ -62,7 +62,7 @@
     <platform name="ios">
         <!-- <dependency id="cordova-plugin-cocoapod-support" /> -->
         <framework src="Google-Mobile-Ads-SDK" type="podspec" spec="7.35.1" />
-        <framework src="GoogleMobileAdsMediationUnity" type="podspec"  spec="2.0.7.0" />
+        <!-- <framework src="GoogleMobileAdsMediationUnity" type="podspec"  spec="2.0.7.0" /> -->
 
         <header-file src="src/ios/src/deps/LDAdBanner.h" />
         <header-file src="src/ios/src/deps/LDAdInterstitial.h" />
