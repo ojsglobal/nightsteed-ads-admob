@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
-        id="nightsteed-ads-admob" version="1.0.0">
+        id="nightsteed-ads-admob" version="1.0.2">
     <name>NightsteedAdsCommon</name>
     <description>Nightsteed Ads API</description>
     <license>@2018, NightSteed All Rights reserved</license>
@@ -47,17 +47,15 @@
             <activity android:name="com.google.android.gms.ads.AdActivity"
                       android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
         </config-file>
-
-        <framework src="com.google.android.gms:play-services-ads:15.0.1"/>
-        <framework src="com.android.support:multidex:1.0.3" />
         <framework src="android/build-extras.gradle" custom="true" type="gradleReference" />
-
+        <!-- Hooks -->
+        <hook src="scripts/hooks/beforePrepare.js" type="after_plugin_install" />
+        <hook src="scripts/hooks/afterPrepare.js" type="after_plugin_add" />
+        <hook src="scripts/hooks/beforePrepare.js" type="before_prepare" />
+        <hook src="scripts/hooks/afterPrepare.js" type="after_prepare" />
     </platform>
 
     <platform name="ios">
-        <!-- <dependency id="cordova-plugin-cocoapod-support" /> -->
-        <framework src="Google-Mobile-Ads-SDK" type="podspec" spec="7.34.0" />
-
         <header-file src="src/ios/src/deps/LDAdBanner.h" />
         <header-file src="src/ios/src/deps/LDAdInterstitial.h" />
         <header-file src="src/ios/src/deps/LDAdRewardedVideo.h" />
@@ -85,6 +83,8 @@
         <framework src="CoreMotion.framework" />
         <framework src="GLKit.framework" />
         <framework src="MobileCoreServices.framework" />
+        <framework src="Google-Mobile-Ads-SDK" type="podspec" spec="7.35.1" />
+        <framework src="GoogleMobileAdsMediationUnity" type="podspec"  spec="2.0.7.0" />
 
         <config-file target="config.xml" parent="/*">
             <feature name="LDAdservice">
@@ -94,10 +94,10 @@
                 <param name="ios-package" value="LDAdMobPlugin" />
             </feature>
         </config-file>
-        
-
     </platform>
+    <!-- <dependency id="cordova-custom-config" version="5.0.2" /> -->
+    <hook type="after_prepare" src="scripts/hooks/beforePluginInstall.js" />
+    <hook type="before_plugin_install" src="scripts/hooks/beforePluginInstall.js" />
+    <hook type="before_platform_add" src="scripts/hooks/beforePluginInstall.js" />
 
-    
-   
 </plugin>

@@ -8,6 +8,8 @@ import com.nightsteed.ads.AdBanner;
 import com.nightsteed.ads.AdInterstitial;
 import com.nightsteed.ads.AdRewardedVideo;
 import com.nightsteed.ads.AdService;
+import com.unity3d.ads.metadata.MetaData;
+
 import org.json.JSONObject;
 
 public class AdServiceAdMob implements AdService {
@@ -17,6 +19,7 @@ public class AdServiceAdMob implements AdService {
     private String _bannerAdUnit;
     private String _interstitialAdUnit;
     private String _rewardedVideoAdUnit;
+    private Activity _activity;
 
     public void configure(Activity activity, JSONObject obj) {
         String appId = obj.optString("appId");
@@ -28,10 +31,13 @@ public class AdServiceAdMob implements AdService {
             throw new RuntimeException("Empty App AdUnit");
         }
 
+        Log.d(TAG, "Initializing with appId: " + appId);
+
         if (!_initialized) {
             MobileAds.initialize(activity, appId);
             _initialized = true;
         }
+        _activity = activity;
         _bannerAdUnit = banner;
         _interstitialAdUnit = interstitial;
         _rewardedVideoAdUnit = rewardedVideo;
@@ -45,6 +51,7 @@ public class AdServiceAdMob implements AdService {
     public void setConsent(boolean consentGiven) {
         Log.d(TAG, "setConsent: " + consentGiven);
         _personalizedAdsConsent = consentGiven;
+        MetaData gdprMetaData = new MetaData(_activity); gdprMetaData.set("gdpr.consent", true); gdprMetaData.commit();
     }
 
     public AdBanner createBanner(Context ctx) {

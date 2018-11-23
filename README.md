@@ -188,3 +188,13 @@ NightSteed.Ad.setConsent(false);
 ```
 
 - true - user consent granted.
+
+## Unity mediation
+For recognising Unity mediation add, the app-id to the config.xml the following way:
+```
+<nightsteed-config>
+    <app-id value="ca-app-pub-xxxxxxxxxxxxxxxx~xxxxxxxxxx" />
+</nightsteed-config>
+```
+
+For the App ID see Google AdMob Dashboard's Apps/App Settings.

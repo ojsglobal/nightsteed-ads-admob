@@ -88,6 +88,7 @@
                                  e.exec(this.serviceName, "setRewardedVideoListener", [], this.listenerHandler.bind(this)),
                                  this.initialized = !0)
         }, n.configure = function(i) {
+            console.log("plugin, configure...");
             var t = e.getPlatform();
             t === e.PlatformType.AMAZON && i[e.PlatformType.ANDROID] && (t = e.PlatformType.ANDROID), i[t] && (i = i[t]), e.exec(this.serviceName, "configure", [i])
         }, n.setConsent = function(i) {
