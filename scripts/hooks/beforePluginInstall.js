@@ -15,7 +15,8 @@ module.exports = function (context) {
 
     console.log('installing external dependencies via npm');
 
-    exec(   'npm install cordova-custom-config xml2js lodash shelljs colors elementtree lodash plist shelljs tostr xcode',
+    // exec(   'npm install cordova-custom-config xml2js lodash shelljs colors elementtree lodash plist shelljs tostr xcode',
+    exec(   'npm install xml2js lodash shelljs colors elementtree lodash plist shelljs tostr xcode',
     // exec(   'npm install cordova-custom-config',
             function (error, stdout, stderr) {
                 if (error !== null) {
