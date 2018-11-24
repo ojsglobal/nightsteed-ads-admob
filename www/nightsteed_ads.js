@@ -60,6 +60,7 @@
                 this.ready = !1, e.exec(this.serviceName, "showRewardedVideo", [this.id])
             },
             load: function() {
+                console.log("JS Plugin calling loadRewardedVideo...");
                 e.exec(this.serviceName, "loadRewardedVideo", [this.id])
             },
             isReady: function() {
@@ -89,6 +90,7 @@
                                  this.initialized = !0)
         }, n.configure = function(i) {
             var t = e.getPlatform();
+            console.log("JS Plugin calling configure...");
             t === e.PlatformType.AMAZON && i[e.PlatformType.ANDROID] && (t = e.PlatformType.ANDROID), i[t] && (i = i[t]), e.exec(this.serviceName, "configure", [i])
         }, n.setConsent = function(i) {
             var t = e.getPlatform();

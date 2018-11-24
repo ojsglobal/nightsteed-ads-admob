@@ -29,7 +29,16 @@
         <source-file src="src/android/src/com/nightsteed/ads/cordova/AdMobPlugin.java" target-dir="src/com/nightsteed/ads/cordova"/>
         <source-file src="src/android/src/com/nightsteed/ads/cordova/AdServicePlugin.java" target-dir="src/com/nightsteed/ads/cordova"/>
 
-        <config-file target="app/src/main/res/xml/config.xml" parent="/*">
+        <!-- <config-file target="app/src/main/res/xml/config.xml" parent="/*">
+            <feature name="LDAdService">
+                <param name="android-package" value="com.nightsteed.ads.cordova.AdServicePlugin"/>
+            </feature>
+            <feature name="LDAdMobPlugin">
+                <param name="android-package" value="com.nightsteed.ads.cordova.AdMobPlugin"/>
+            </feature>
+        </config-file> -->
+
+        <config-file target="res/xml/config.xml" parent="/*">
             <feature name="LDAdService">
                 <param name="android-package" value="com.nightsteed.ads.cordova.AdServicePlugin"/>
             </feature>
