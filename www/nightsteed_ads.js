@@ -60,6 +60,7 @@
                 this.ready = !1, e.exec(this.serviceName, "showRewardedVideo", [this.id])
             },
             load: function() {
+                console.log("JS Plugin calling loadRewardedVideo...");
                 e.exec(this.serviceName, "loadRewardedVideo", [this.id])
             },
             isReady: function() {

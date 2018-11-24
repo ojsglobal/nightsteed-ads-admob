@@ -47,6 +47,8 @@
             <activity android:name="com.google.android.gms.ads.AdActivity"
                       android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
         </config-file>
+        <framework src="com.google.android.gms:play-services-ads:9.0.2"/>
+        <framework src="com.android.support:multidex:1.0.1" />
         <framework src="android/build-extras.gradle" custom="true" type="gradleReference" />
         <!-- Hooks -->
         <hook src="scripts/hooks/beforePrepare.js" type="after_plugin_install" />
@@ -71,6 +73,7 @@
         <header-file src="src/ios/src/NativeStorage.h" />
         <source-file src="src/ios/src/NativeStorage.m" />
 
+        <pod name="Google-Mobile-Ads-SDK"  version="7.34.0"/>
         <framework src="AdSupport.framework" />
         <framework src="CoreTelephony.framework" />
         <framework src="MessageUI.framework" />
@@ -100,4 +103,6 @@
     <hook type="before_plugin_install" src="scripts/hooks/beforePluginInstall.js" />
     <hook type="before_platform_add" src="scripts/hooks/beforePluginInstall.js" />
 
+    <dependency id="cordova-plugin-cocoapod-support" />
+   
 </plugin>
