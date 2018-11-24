@@ -33,7 +33,8 @@
 	{
 		NSUserDefaults *defaults = [self getUserDefault];
 		[defaults setBool: aBoolean forKey:reference];
-		BOOL success = [defaults synchronize];
+//		BOOL success = [defaults synchronize];
+		[defaults synchronize];
 	}
 }
 - (BOOL) getBoolean: (NSString*)key {
