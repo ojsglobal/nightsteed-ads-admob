@@ -1,32 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
-        id="nightsteed-ads-admob" version="1.0.0">
+        id="nightsteed-ads-admob" version="1.0.2">
     <name>NightsteedAdsCommon</name>
     <description>Nightsteed Ads API</description>
     <license>@2018, NightSteed All Rights reserved</license>
-    <keywords>cordova,ads,banner,interstitial,monetization,ad,mopub,cocoon,plugins</keywords>
+    <keywords>cordova,ads,banner,interstitial,monetization,ad,nightsteed,plugins</keywords>
+    <js-module src="www/nightsteed_utils.js" name="NightSteedUtils">
+        <runs/>
+    </js-module>
     <js-module src="www/nightsteed_ads.js" name="Ads">
         <runs/>
     </js-module>
 
     <platform name="android">
-        <source-file src="src/ios/src/android/src/com/nightsteed/ads/AdService.java" target-dir="src/com/nightsteed/ads"/>
-        <source-file src="src/ios/src/android/src/com/nightsteed/ads/AdBanner.java" target-dir="src/com/nightsteed/ads"/>
-        <source-file src="src/ios/src/android/src/com/nightsteed/ads/AbstractAdBanner.java" target-dir="src/com/nightsteed/ads"/>
-        <source-file src="src/ios/src/android/src/com/nightsteed/ads/AdInterstitial.java" target-dir="src/com/nightsteed/ads"/>
-        <source-file src="src/ios/src/android/src/com/nightsteed/ads/AbstractAdInterstitial.java" target-dir="src/com/nightsteed/ads"/>
-        <source-file src="src/ios/src/android/src/com/nightsteed/ads/AdRewardedVideo.java" target-dir="src/com/nightsteed/ads"/>
-        <source-file src="src/ios/src/android/src/com/nightsteed/ads/AbstractAdRewardedVideo.java" target-dir="src/com/nightsteed/ads"/>
+        <source-file src="src/android/src/com/nightsteed/ads/AdService.java" target-dir="src/com/nightsteed/ads"/>
+        <source-file src="src/android/src/com/nightsteed/ads/AdBanner.java" target-dir="src/com/nightsteed/ads"/>
+        <source-file src="src/android/src/com/nightsteed/ads/AbstractAdBanner.java" target-dir="src/com/nightsteed/ads"/>
+        <source-file src="src/android/src/com/nightsteed/ads/AdInterstitial.java" target-dir="src/com/nightsteed/ads"/>
+        <source-file src="src/android/src/com/nightsteed/ads/AbstractAdInterstitial.java" target-dir="src/com/nightsteed/ads"/>
+        <source-file src="src/android/src/com/nightsteed/ads/AdRewardedVideo.java" target-dir="src/com/nightsteed/ads"/>
+        <source-file src="src/android/src/com/nightsteed/ads/AbstractAdRewardedVideo.java" target-dir="src/com/nightsteed/ads"/>
 
-        <source-file src="src/ios/src/android/src/com/nightsteed/ads/admob/AdBannerAdMob.java" target-dir="src/com/nightsteed/ads/admob"/>
-        <source-file src="src/ios/src/android/src/com/nightsteed/ads/admob/AdInterstitialAdMob.java" target-dir="src/com/nightsteed/ads/admob"/>
-        <source-file src="src/ios/src/android/src/com/nightsteed/ads/admob/AdRewardedAdMob.java" target-dir="src/com/nightsteed/ads/admob"/>
+        <source-file src="src/android/src/com/nightsteed/ads/admob/AdBannerAdMob.java" target-dir="src/com/nightsteed/ads/admob"/>
+        <source-file src="src/android/src/com/nightsteed/ads/admob/AdInterstitialAdMob.java" target-dir="src/com/nightsteed/ads/admob"/>
+        <source-file src="src/android/src/com/nightsteed/ads/admob/AdRewardedAdMob.java" target-dir="src/com/nightsteed/ads/admob"/>
         
-        <source-file src="src/ios/src/android/src/com/nightsteed/ads/admob/AdServiceAdMob.java" target-dir="src/com/nightsteed/ads/admob"/>
-        <source-file src="src/ios/src/android/src/com/nightsteed/ads/cordova/AdMobPlugin.java" target-dir="src/com/nightsteed/ads/cordova"/>
-        <source-file src="src/ios/src/android/src/com/nightsteed/ads/cordova/AdServicePlugin.java" target-dir="src/com/nightsteed/ads/cordova"/>
+        <source-file src="src/android/src/com/nightsteed/ads/admob/AdServiceAdMob.java" target-dir="src/com/nightsteed/ads/admob"/>
+        <source-file src="src/android/src/com/nightsteed/ads/cordova/AdMobPlugin.java" target-dir="src/com/nightsteed/ads/cordova"/>
+        <source-file src="src/android/src/com/nightsteed/ads/cordova/AdServicePlugin.java" target-dir="src/com/nightsteed/ads/cordova"/>
 
-        <config-file target="app/src/main/res/xml/config.xml" parent="/*">
+        <config-file target="res/xml/config.xml" parent="/*">
             <feature name="LDAdService">
                 <param name="android-package" value="com.nightsteed.ads.cordova.AdServicePlugin"/>
             </feature>
@@ -44,11 +47,14 @@
             <activity android:name="com.google.android.gms.ads.AdActivity"
                       android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
         </config-file>
-
-        <framework src="com.google.android.gms:play-services-ads:15.0.1"/>
-        <framework src="com.android.support:multidex:1.0.3" />
+        <framework src="com.google.android.gms:play-services-ads:9.0.2"/>
+        <framework src="com.android.support:multidex:1.0.1" />
         <framework src="android/build-extras.gradle" custom="true" type="gradleReference" />
-
+        <!-- Hooks -->
+        <hook src="scripts/hooks/beforePrepare.js" type="after_plugin_install" />
+        <hook src="scripts/hooks/afterPrepare.js" type="after_plugin_add" />
+        <hook src="scripts/hooks/beforePrepare.js" type="before_prepare" />
+        <hook src="scripts/hooks/afterPrepare.js" type="after_prepare" />
     </platform>
 
     <platform name="ios">
@@ -67,7 +73,8 @@
         <header-file src="src/ios/src/NativeStorage.h" />
         <source-file src="src/ios/src/NativeStorage.m" />
 
-        <pod name="Google-Mobile-Ads-SDK"  version="7.34.0"/>
+        <pod name="Google-Mobile-Ads-SDK"  version="7.35.0"/>
+        <pod name="GoogleMobileAdsMediationUnity"  version="2.0.7.0"/>
 
         <framework src="AdSupport.framework" />
         <framework src="CoreTelephony.framework" />
@@ -81,6 +88,8 @@
         <framework src="CoreMotion.framework" />
         <framework src="GLKit.framework" />
         <framework src="MobileCoreServices.framework" />
+        <!-- <framework src="Google-Mobile-Ads-SDK" type="podspec" spec="7.35.1" />
+        <framework src="GoogleMobileAdsMediationUnity" type="podspec"  spec="2.0.7.0" /> -->
 
         <config-file target="config.xml" parent="/*">
             <feature name="LDAdservice">
@@ -90,12 +99,12 @@
                 <param name="ios-package" value="LDAdMobPlugin" />
             </feature>
         </config-file>
-
     </platform>
+    <!-- <dependency id="cordova-custom-config" version="5.0.2" /> -->
+    <hook type="after_prepare" src="scripts/hooks/beforePluginInstall.js" />
+    <hook type="before_plugin_install" src="scripts/hooks/beforePluginInstall.js" />
+    <hook type="before_platform_add" src="scripts/hooks/beforePluginInstall.js" />
 
-
-
-    <dependency id="cocoon-plugin-common" />
     <dependency id="cordova-plugin-cocoapod-support" />
-    
+   
 </plugin>

@@ -55,9 +55,12 @@ public class AdInterstitialAdMob extends AbstractAdInterstitial {
         if (!adsConsent) {
             Bundle extras = new Bundle();
             extras.putString("npa", "1");
-            adRequest = new AdRequest.Builder().addNetworkExtrasBundle(AdMobAdapter.class, extras).build();
+            adRequest = new AdRequest.Builder()
+                .addNetworkExtrasBundle(AdMobAdapter.class, extras)
+                .build();
         } else {
-            adRequest = new AdRequest.Builder().build();
+            adRequest = new AdRequest.Builder()
+                .build();
         }
 
         _interstitial.loadAd(adRequest);

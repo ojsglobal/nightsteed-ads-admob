@@ -15,21 +15,26 @@ import com.nightsteed.ads.AdRewardedVideo;
 
 public class AdRewardedAdMob extends AbstractAdRewardedVideo {
     private final String TAG = "AdRewardedAdMob";
+    private final int    ERR_REWARD_FAILED = 1000;
     private RewardedVideoAd _rewardedVideo;
     private String adUnit;
     private boolean loading = false;
     private boolean adsConsent;
+    private boolean rewardEarned;
 
     AdRewardedAdMob(Context ctx, String adUnit, boolean personalizedAdsConsent) {
         Log.d(TAG, "AdRewardedAdMob ctor...");
         adsConsent = personalizedAdsConsent;
+        rewardEarned = false;
 
         _rewardedVideo = MobileAds.getRewardedVideoAdInstance(ctx);
         this.adUnit = adUnit;
         _rewardedVideo.setRewardedVideoAdListener(new RewardedVideoAdListener() {
+
             public void onRewardedVideoAdLoaded() {
                 Log.d(TAG, "onRewardedVideoAdLoaded...");
                 loading = false;
+                rewardEarned = false;
                 notifyOnLoaded();
             }
 
@@ -44,11 +49,18 @@ public class AdRewardedAdMob extends AbstractAdRewardedVideo {
 
             public void onRewardedVideoAdClosed() {
                 Log.d(TAG, "onRewardedVideoAdClosed...");
+                if (!rewardEarned) {
+                    AdRewardedVideo.Error error = new AdRewardedVideo.Error();
+                    error.code = ERR_REWARD_FAILED;
+                    error.message = "Rewarded video dismissed";
+                    notifyOnRewardCompleted(null, error);
+                }
                 notifyOnDismissed();
             }
 
             public void onRewarded(RewardItem rewardItem) {
                 Log.d(TAG, "onRewarded...");
+                rewardEarned = true;
                 AdRewardedVideo.Reward result = new AdRewardedVideo.Reward();
                 result.amount = Math.max(rewardItem.getAmount(), 1);
                 result.currency = rewardItem.getType();
@@ -89,13 +101,16 @@ public class AdRewardedAdMob extends AbstractAdRewardedVideo {
                 Log.d(TAG, "loadAd...still loading...!adsConsent");
                 Bundle extras = new Bundle();
                 extras.putString("npa", "1");
-                adRequest = new AdRequest.Builder().addNetworkExtrasBundle(AdMobAdapter.class, extras).build();
+                adRequest = new AdRequest.Builder()
+                    .addNetworkExtrasBundle(AdMobAdapter.class, extras)
+                    .build();
             } else {
                 Log.d(TAG, "loadAd...still loading...   adsConsent...");
-                adRequest = new AdRequest.Builder().build();
+                adRequest = new AdRequest.Builder()
+                    .build();
             }
 
-            Log.d(TAG, "loadAd, request...");
+            Log.d(TAG, "loadAd, request...adUnit: " + adUnit);
             _rewardedVideo.loadAd(adUnit, adRequest);
             Log.d(TAG, "loadAd, request...END...");
         } else {

@@ -1,7 +1,7 @@
 !function() {
-    !window.Cocoon && window.cordova && "undefined" != typeof require && cordova.require("cocoon-plugin-common.Cocoon");
-    var e = window.Cocoon;
-    e.define("Cocoon.Ad", function(i) {
+    !window.NightSteed && window.cordova && "undefined" != typeof require && cordova.require("nightsteed-ads-admob.NightSteedUtils");
+    var e = window.NightSteed;
+    e.define("Ad", function(i) {
         "use strict";
         i.BannerLayout = {
             TOP_CENTER: "TOP_CENTER",
@@ -60,6 +60,7 @@
                 this.ready = !1, e.exec(this.serviceName, "showRewardedVideo", [this.id])
             },
             load: function() {
+                console.log("JS Plugin calling loadRewardedVideo...");
                 e.exec(this.serviceName, "loadRewardedVideo", [this.id])
             },
             isReady: function() {
@@ -73,8 +74,10 @@
         i.AdService = function(e) {
             this.serviceName = e, this.activeAds = {}
         };
+
         var n = {};
-        i.AdService.prototype = n, n.listenerHandler = function(e) {
+        i.AdService.prototype = n, 
+        n.listenerHandler = function(e) {
             var i = e[0],
                 t = e[1],
                 n = e.slice(2),
@@ -86,6 +89,7 @@
                                  e.exec(this.serviceName, "setRewardedVideoListener", [], this.listenerHandler.bind(this)),
                                  this.initialized = !0)
         }, n.configure = function(i) {
+            console.log("plugin, configure...");
             var t = e.getPlatform();
             t === e.PlatformType.AMAZON && i[e.PlatformType.ANDROID] && (t = e.PlatformType.ANDROID), i[t] && (i = i[t]), e.exec(this.serviceName, "configure", [i])
         }, n.setConsent = function(i) {
@@ -111,40 +115,41 @@
         }, n.releaseInterstitial = function(i) {
             e.exec(this.serviceName, "releaseInterstitial", [i.id]), delete this.activeAds[i.id]
         }, n.createRewardedVideo = function(n) {
-            console.log("JS: createRewardedVideo...");
             this.init();
-            console.log("JS: createRewardedVideo, init END...");
             var o = t++;
             e.exec(this.serviceName, "createRewardedVideo", [o, n]);
             var s = new i.RewardedVideo(o, this.serviceName);
             return this.activeAds[o] = s, s
         }, n.releaseRewardedVideo = function(i) {
-            console.log("JS: releaseRewardedVideo...");
             e.exec(this.serviceName, "releaseRewardedVideo", [i.id]), delete this.activeAds[i.id]
-        }, i.serviceName = "LDAdService", i.activeAds = {};
-        for (var o in n) n.hasOwnProperty(o) && (i[o] = n[o]);
+        }, i.serviceName = "LDAdService", 
+        i.activeAds = {}
+
+        for (var o in n) {
+            n.hasOwnProperty(o) && (i[o] = n[o]);
+        }
         return i
     })
 }(),
 function() {
-    Cocoon.define("Cocoon.Ad", function(e) {
-        return e.AdMob = new Cocoon.Ad.AdService("LDAdMobPlugin"), e
+    NightSteed.define("NightSteed.Ad", function(e) {
+        return e.AdMob = new NightSteed.Ad.AdService("LDAdMobPlugin"), e
     })
 }(),
 function() {
-    Cocoon.define("Cocoon.Ad", function(e) {
-        return e.MoPub = new Cocoon.Ad.AdService("LDMoPubPlugin"), e
+    NightSteed.define("NightSteed.Ad", function(e) {
+        return e.MoPub = new NightSteed.Ad.AdService("LDMoPubPlugin"), e
     })
 }(),
 function() {
-    Cocoon.define("Cocoon.Ad", function(e) {
-        return e.Chartboost = new Cocoon.Ad.AdService("LDChartboostPlugin"), e
+    NightSteed.define("NightSteed.Ad", function(e) {
+        return e.Chartboost = new NightSteed.Ad.AdService("LDChartboostPlugin"), e
     })
 }(),
 function() {
-    Cocoon.define("Cocoon.Ad", function(e) {
-        return e.Heyzap = new Cocoon.Ad.AdService("LDHeyzapPlugin"), e.Heyzap.showDebug = function() {
-            Cocoon.exec(this.serviceName, "showDebug", [])
+    NightSteed.define("NightSteed.Ad", function(e) {
+        return e.Heyzap = new NightSteed.Ad.AdService("LDHeyzapPlugin"), e.Heyzap.showDebug = function() {
+            NightSteed.exec(this.serviceName, "showDebug", [])
         }, e
     })
 }();

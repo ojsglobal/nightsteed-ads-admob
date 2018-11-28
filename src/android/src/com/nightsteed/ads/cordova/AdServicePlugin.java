@@ -203,7 +203,8 @@ public class AdServicePlugin extends CordovaPlugin implements
     }
 
     public void createRewardedVideo(CordovaArgs args, CallbackContext ctx) {
-        Log.d(TAG, "createRewardedVideo...");
+        Log.d(TAG, "createRewardedVideo...0: " + args.optString(0) + ", 1: " + args.optString(1));
+        
         String rewardedVideoId = getId(args);
         String adUnit = args.isNull(1) ? null : args.optString(1);
         Log.d(TAG, "createRewardedVideo...adUnit: " + adUnit);
@@ -414,12 +415,36 @@ public class AdServicePlugin extends CordovaPlugin implements
     protected void callListeners(CallbackContext ctx, Object... args) {
         JSONArray array = new JSONArray();
         for (Object obj : args) {
-            array.put(obj);
+            if (obj instanceof AdRewardedVideo.Reward) {
+                Log.d(TAG, "This is reward");
+                Object rewardObj = getRewardJson((AdRewardedVideo.Reward)obj);
+                array.put(rewardObj);
+            } else if (obj instanceof AdRewardedVideo.Error) {
+                Log.d(TAG, "This is reward error");
+                AdRewardedVideo.Error rewardError = (AdRewardedVideo.Error)obj;
+                array.put(rewardError.code);
+                array.put(rewardError.message);
+            } else {
+                array.put(obj);
+            }
         }
         PluginResult pluginResult = new PluginResult(Status.OK, array);
         pluginResult.setKeepCallback(true);
         Log.d(TAG, "callListeners, isNull: " + array.toString());
         ctx.sendPluginResult(pluginResult);
+    }
+
+    Object getRewardJson(AdRewardedVideo.Reward reward) {
+        JSONObject obj = new JSONObject();
+        try {
+            obj.put("amount", reward.amount);
+            obj.put("currency", reward.currency);
+            obj.put("itemKey", reward.itmKey);
+        } catch(JSONException e) {
+            return null;
+        }
+        
+        return obj;
     }
 
     protected void layoutBanner(BannerData data) {

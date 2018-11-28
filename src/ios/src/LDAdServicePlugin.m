@@ -1,5 +1,8 @@
 #import "LDAdServicePlugin.h"
+#import "UnityAds/UADSMetaData.h"
 #import "NativeStorage.h"
+
+@import GoogleMobileAds;
 
 
 @implementation LDAdBannerData
@@ -28,6 +31,7 @@ static inline NSString * GET_ID(CDVInvokedUrlCommand * command)
     NSString * _bannerListenerId;
     NSString * _interstitialListenerId;
     NSString * _rewardedVideoListenerId;
+    NSString * _appId;
     NativeStorage* storage;
 }
 
@@ -60,15 +64,39 @@ static inline NSString * GET_ID(CDVInvokedUrlCommand * command)
     _service.settings.interstitialIpad = [data objectForKey:@"interstitialIpad"] ?: _service.settings.interstitialIpad;
     _service.settings.rewardedVideo = [data objectForKey:@"rewardedVideo"] ?: _service.settings.rewardedVideo;
     _service.settings.rewardedVideoIpad = [data objectForKey:@"rewardedVideoIpad"] ?: _service.settings.rewardedVideoIpad;
+    
+    
+    _appId = [data objectForKey:@"appId"];
+    NSLog(_appId);
+    
+    if (_appId == NULL) {
+        NSLog(@"Null appId");
+    } else {
+        NSLog(@"The passed appId: %@", _appId);
+    }
+
+    
+
+    
+    [GADMobileAds configureWithApplicationID:_appId];
+//     [GADMobileAds configureWithApplicationID:@"ca-app-pub-5839242606014541~7317319957"];
+    
+    GADRequest *request = [GADRequest request];
+    request.testDevices = @[ @"26feeb2948194259a57b970e3643219d" ]; // Sample device ID
+
     [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK] callbackId:command.callbackId];
 }
 
 -(void) setConsent:(CDVInvokedUrlCommand*) command
 {
-    BOOL consentOK = [[command argumentAtIndex:0 withDefault:@"NO"] boolValue];
+    BOOL consentOK = [[command argumentAtIndex:0 withDefault:@NO] boolValue];
     NSLog(consentOK ? @"setConsent: consent Yes" : @"setConsent: consent No");
     [storage putBoolean:@"personalizedAdsConsent" value:consentOK];
     _service.settings.personalizedAdsConsent = consentOK;
+
+    UADSMetaData *gdprConsentMetaData = [[UADSMetaData alloc] init];
+    [gdprConsentMetaData set:@"gdpr.consent" value:(consentOK ? @YES : @NO)];
+    [gdprConsentMetaData commit];
 
     [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK] callbackId:command.callbackId];
 }
@@ -308,8 +336,8 @@ static inline NSString * GET_ID(CDVInvokedUrlCommand * command)
     
     NSMutableDictionary * dic = [NSMutableDictionary dictionary];
     [dic setObject:reward && reward.amount ? reward.amount : [NSNumber numberWithInteger:0] forKey:@"amount"];
-    [dic setObject:reward && reward.currencyType ? reward.currencyType : @"" forKey:@"currencyType"];
-    [dic setObject:reward && reward.itmKey ? reward.itmKey : @"" forKey:@"itmKey"];
+    [dic setObject:reward && reward.currencyType ? reward.currencyType : @"" forKey:@"currency"];
+    [dic setObject:reward && reward.itmKey ? reward.itmKey : @"" forKey:@"itemKey"];
     
     if (error) {
         [self callListener:@[@"reward", [self findInterstitialId:interstitial], dic, [self errorToDic:error]] callbackId:_interstitialListenerId];
@@ -348,8 +376,8 @@ static inline NSString * GET_ID(CDVInvokedUrlCommand * command)
     
     NSMutableDictionary * dic = [NSMutableDictionary dictionary];
     [dic setObject:reward && reward.amount ? reward.amount : [NSNumber numberWithInteger:0] forKey:@"amount"];
-    [dic setObject:reward && reward.currencyType ? reward.currencyType : @"" forKey:@"currencyType"];
-    [dic setObject:reward && reward.itmKey ? reward.itmKey : @"" forKey:@"itmKey"];
+    [dic setObject:reward && reward.currencyType ? reward.currencyType : @"" forKey:@"currency"];
+    [dic setObject:reward && reward.itmKey ? reward.itmKey : @"" forKey:@"itemKey"];
     
     if (error) {
         [self callListener:@[@"reward", [self findRewardedVideoId:rewardedVideo], dic, [self errorToDic:error]] callbackId:_rewardedVideoListenerId];
