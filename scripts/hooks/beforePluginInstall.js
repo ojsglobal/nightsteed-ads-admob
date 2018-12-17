@@ -21,7 +21,7 @@ module.exports = function (context) {
             function (error, stdout, stderr) {
                 if (error !== null) {
                     // XXX TODO SIGNAL FAILURE HERE.
-                    console.log('npm install of external dependencies (cordova-custom-config) failed: ' + error);
+                    console.log('npm install of external dependencies (npm install xml2js q lodash shelljs colors elementtree lodash plist shelljs tostr xcode) failed: ' + error);
                     deferral.resolve();
                 } else {
                     console.log('npm install of external dependencies (cordova-custom-config) ok');
