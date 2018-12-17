@@ -9,6 +9,12 @@ android {
 	    compile 'com.google.ads.mediation:unity:2+'
 	}
 
+	dexOptions {
+	    javaMaxHeapSize "2g"
+	}
+
+
+
 	// dependencies {
 	//     compile 'com.android.support:appcompat-v7:27.0.1'
 	//     compile 'com.google.android.gms:play-services-ads:17.0.0'
