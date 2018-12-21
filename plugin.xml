@@ -58,7 +58,7 @@
     </platform>
 
     <platform name="ios">
-        <dependency id="cordova-admob-sdk" version="0.22.0"/>
+        <!-- <dependency id="cordova-admob-sdk" version="0.22.0"/> -->
 
         <pods-config ios-min-version="8.0" use-frameworks="true">
              <!-- optionally add private spec sources -->
@@ -83,6 +83,7 @@
         <!-- <pod name="Google-Mobile-Ads-SDK"  version="7.34.0"/> -->
         <!-- <pod name="PersonalizedAdConsent"  version="1.0.3"/> -->
         <!-- <framework src="AdSupport.framework" /> -->
+        <framework src="src/ios/GoogleMobileAds.framework" custom="true" />
         <framework src="CoreTelephony.framework" />
         <framework src="MessageUI.framework" />
         <framework src="EventKit.framework" />
