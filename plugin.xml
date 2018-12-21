@@ -58,6 +58,13 @@
     </platform>
 
     <platform name="ios">
+        <dependency id="cordova-plugin-cocoapod-support"/>
+
+        <pods-config ios-min-version="8.0" use-frameworks="true">
+             <!-- optionally add private spec sources -->
+            <!-- <source url="git@github.com:foo/foo-specs.git"/>
+            <source url="git@github.com:bar/bar-specs.git"/> -->
+        </pods-config>
         <header-file src="src/ios/src/deps/LDAdBanner.h" />
         <header-file src="src/ios/src/deps/LDAdInterstitial.h" />
         <header-file src="src/ios/src/deps/LDAdRewardedVideo.h" />
@@ -90,7 +97,7 @@
         <!-- <framework src="Google-Mobile-Ads-SDK" type="podspec" spec="7.35.1" />
         <framework src="PersonalizedAdConsent" type="podspec" spec="1.0.3" /> -->
 
-        
+
         <!-- <framework src="GoogleMobileAdsMediationUnity" type="podspec"  spec="2.0.7.0" /> -->
 
         <config-file target="config.xml" parent="/*">
