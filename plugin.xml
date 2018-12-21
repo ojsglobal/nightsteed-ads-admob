@@ -59,7 +59,7 @@
 
     <platform name="ios">
         <dependency id="cordova-plugin-cocoapod-support"/>
-        <dependency id="cordova-admobsdk" version="~7.35.0"/>
+        <dependency id="cordova-admob-sdk" version="~7.35.0"/>
 
         <pods-config ios-min-version="8.0" use-frameworks="true">
              <!-- optionally add private spec sources -->
