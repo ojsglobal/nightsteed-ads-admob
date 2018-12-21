@@ -59,6 +59,7 @@
 
     <platform name="ios">
         <dependency id="cordova-plugin-cocoapod-support"/>
+        <dependency id="cordova-admobsdk" version="~7.35.0"/>
 
         <pods-config ios-min-version="8.0" use-frameworks="true">
              <!-- optionally add private spec sources -->
@@ -80,7 +81,7 @@
         <header-file src="src/ios/src/NativeStorage.h" />
         <source-file src="src/ios/src/NativeStorage.m" />
 
-        <pod name="Google-Mobile-Ads-SDK"  version="7.34.0"/>
+        <!-- <pod name="Google-Mobile-Ads-SDK"  version="7.34.0"/> -->
         <!-- <pod name="PersonalizedAdConsent"  version="1.0.3"/> -->
         <framework src="AdSupport.framework" />
         <framework src="CoreTelephony.framework" />
