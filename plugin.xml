@@ -74,7 +74,7 @@
         <source-file src="src/ios/src/NativeStorage.m" />
 
         <pod name="Google-Mobile-Ads-SDK"  version="7.34.0"/>
-        <!-- <pod name="PersonalizedAdConsent"  version="7.34.0"/> -->
+        <pod name="PersonalizedAdConsent"  version="1.0.3"/>
         <framework src="AdSupport.framework" />
         <framework src="CoreTelephony.framework" />
         <framework src="MessageUI.framework" />
@@ -87,8 +87,10 @@
         <framework src="CoreMotion.framework" />
         <framework src="GLKit.framework" />
         <framework src="MobileCoreServices.framework" />
-        <framework src="Google-Mobile-Ads-SDK" type="podspec" spec="7.35.1" />
-        <!-- <framework src="PersonalizedAdConsent" type="podspec" spec="7.35.1" /> -->
+        <!-- <framework src="Google-Mobile-Ads-SDK" type="podspec" spec="7.35.1" />
+        <framework src="PersonalizedAdConsent" type="podspec" spec="1.0.3" /> -->
+
+        
         <!-- <framework src="GoogleMobileAdsMediationUnity" type="podspec"  spec="2.0.7.0" /> -->
 
         <config-file target="config.xml" parent="/*">
