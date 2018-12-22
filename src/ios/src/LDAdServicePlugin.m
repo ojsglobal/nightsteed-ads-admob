@@ -1,5 +1,5 @@
 #import "LDAdServicePlugin.h"
-// #import "UnityAds/UADSMetaData.h" // TODO: unity mediation
+#import "UnityAds/UADSMetaData.h" // TODO: unity mediation
 #import "NativeStorage.h"
 
 @import GoogleMobileAds;
@@ -95,9 +95,9 @@ static inline NSString * GET_ID(CDVInvokedUrlCommand * command)
     _service.settings.personalizedAdsConsent = consentOK;
 
     // TODO: unity mediation
-    // UADSMetaData *gdprConsentMetaData = [[UADSMetaData alloc] init];
-    // [gdprConsentMetaData set:@"gdpr.consent" value:(consentOK ? @YES : @NO)];
-    // [gdprConsentMetaData commit];
+    UADSMetaData *gdprConsentMetaData = [[UADSMetaData alloc] init];
+    [gdprConsentMetaData set:@"gdpr.consent" value:(consentOK ? @YES : @NO)];
+    [gdprConsentMetaData commit];
 
     [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK] callbackId:command.callbackId];
 }
