@@ -59,12 +59,6 @@
 
     <platform name="ios">
         <!-- <dependency id="cordova-admob-sdk" version="0.22.0"/> -->
-
-        <pods-config ios-min-version="8.0" use-frameworks="true">
-             <!-- optionally add private spec sources -->
-            <!-- <source url="git@github.com:foo/foo-specs.git"/>
-            <source url="git@github.com:bar/bar-specs.git"/> -->
-        </pods-config>
         <header-file src="src/ios/src/deps/LDAdBanner.h" />
         <header-file src="src/ios/src/deps/LDAdInterstitial.h" />
         <header-file src="src/ios/src/deps/LDAdRewardedVideo.h" />
@@ -97,7 +91,7 @@
         <framework src="MobileCoreServices.framework" /> -->
 
 
-        <framework src="AdSupport.framework" />
+        <!-- <framework src="AdSupport.framework" />
         <framework src="AudioToolbox.framework" />
         <framework src="AVFoundation.framework" />
         <framework src="CoreBluetooth.framework" />
@@ -116,7 +110,7 @@
         <framework src="SafariServices.framework" />
         <framework src="StoreKit.framework" />
         <framework src="SystemConfiguration.framework" />
-        <framework src="UIKit.framework" />
+        <framework src="UIKit.framework" /> -->
 
 
 
@@ -141,7 +135,5 @@
     <hook type="after_prepare" src="scripts/hooks/beforePluginInstall.js" />
     <hook type="before_plugin_install" src="scripts/hooks/beforePluginInstall.js" />
     <hook type="before_platform_add" src="scripts/hooks/beforePluginInstall.js" />
-
-    <dependency id="cordova-plugin-cocoapod-support" />
    
 </plugin>
