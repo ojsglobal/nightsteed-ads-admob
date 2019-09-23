@@ -47,7 +47,7 @@
             <activity android:name="com.google.android.gms.ads.AdActivity"
                       android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
         </config-file>
-        <framework src="com.google.android.gms:play-services-ads:9.0.2"/>
+        <framework src="com.google.android.gms:play-services-ads:11.0.4"/>
         <!-- <framework src="com.android.support:multidex:1.0.1" /> -->
         <framework src="android/build-extras.gradle" custom="true" type="gradleReference" />
         <!-- Hooks -->
